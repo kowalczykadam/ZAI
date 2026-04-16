@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-3">Usuń książkę</h1>
+
+<div class="alert alert-danger">
+    Czy na pewno chcesz usunąć:
+    <strong>{{ object.title }}</strong>?
+</div>
+
+<form method="post">
+    {% csrf_token %}
+
+    <button type="submit" class="btn btn-danger">
+        Tak, usuń
+    </button>
+
+    <a class="btn btn-secondary" href="{% url 'book_list' %}">
+        Anuluj
+    </a>
+</form>
+
+{% endblock %}

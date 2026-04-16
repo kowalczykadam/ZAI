@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4">
+    {% if object %}
+        Edytuj książkę
+    {% else %}
+        Dodaj książkę
+    {% endif %}
+</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label class="form-label">Tytuł</label>
+        {{ form.title }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Autor</label>
+        {{ form.author }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Rok</label>
+        {{ form.year }}
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Zapisz
+    </button>
+
+    <a class="btn btn-secondary" href="{% url 'book_list' %}">
+        Anuluj
+    </a>
+</form>
+
+{% endblock %}

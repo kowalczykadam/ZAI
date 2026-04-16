@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4">Książki</h1>
+
+<div class="row">
+{% for book in object_list %}
+  <div class="col-md-6">
+    <div class="card mb-3 shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title">{{ book.title }}</h5>
+        <p class="card-text text-muted">{{ book.author }}</p>
+
+        <div class="btn-group">
+            <a href="{% url 'book_detail' book.pk %}"
+               class="btn btn-sm btn-outline-primary">
+               Szczegóły
+            </a>
+
+            <a href="{% url 'book_edit' book.pk %}"
+               class="btn btn-sm btn-outline-warning">
+               Edytuj
+            </a>
+
+            <a href="{% url 'book_delete' book.pk %}"
+               class="btn btn-sm btn-outline-danger">
+               Usuń
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% empty %}
+<div class="alert alert-info">
+    Brak książek w bazie
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}
